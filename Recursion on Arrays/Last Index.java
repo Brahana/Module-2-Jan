@@ -26,7 +26,8 @@ class Main {
 	}
 }
 
-//import java.util.Scanner;
+//
+import java.util.Scanner;
 
 
 
@@ -39,17 +40,34 @@ class Main {
 			A[i] = s.nextInt();
 		}
 		int T = s.nextInt();
-		System.out.println(lastIndex(A, T, N-1));
+		System.out.println(lastIndex(A, T, 0));
 	}
 
 	static int lastIndex(int A[],int T,int startIndex)
 	{
 		//Write your code here
-		if(startIndex<0)
+		if(startIndex==A.length)
+		{
 			return -1;
-		if(A[startIndex]!=T)
-			return lastIndex(A,T,startIndex-1);
-		return startIndex;
-       
+		}
+       int smallAns=lastIndex(A,T,startIndex+1);
+		int ans=0;
+		if(smallAns== -1)
+		{
+			if(A[startIndex]==T)
+			{
+				ans=startIndex;
+			}
+			else
+			{
+				ans=smallAns;
+			}
+				
+		}
+		else
+		{
+			ans=smallAns;
+		}
+		return ans;
 	}
 }
